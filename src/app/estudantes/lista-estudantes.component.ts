@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IEstudante } from './estudantes';
 
 @Component({
     selector: 'jedi-estudantes',
@@ -9,8 +10,22 @@ export class ListaEstudantesComponent {
     larguraImagem: number = 50;
     margemImagem: number = 2;
     exibirImagem: boolean = false;
-    filtroLista: string = 'luke';
-    estudantes: any[] = [
+    _filtroLista: string;
+    get filtroLista() : string {
+        return this._filtroLista;
+    }
+    set filtroLista(valor: string) {
+        this._filtroLista = valor;
+        this.estudantesFiltrados = this.filtroLista ? this.executarFiltro(this.filtroLista) : this.estudantes;
+    }
+
+    constructor() {
+        this.estudantesFiltrados = this.estudantes;
+        this.filtroLista = '';
+        }
+    
+    estudantesFiltrados: IEstudante[];
+    estudantes: IEstudante[] = [
         {
             "id": 1,
             "nome": "Luke Skywalker",
@@ -243,7 +258,11 @@ export class ListaEstudantesComponent {
 
     alternarImagem() : void {
         this.exibirImagem = !this.exibirImagem;
-}
+    }
 
-
+    executarFiltro(filtrarPor: string): IEstudante[] {
+        filtrarPor = filtrarPor.toLocaleLowerCase();
+        return this.estudantes.filter((estudante: IEstudante) => 
+        estudante.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1);
+    }
 }

@@ -30,17 +30,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let estudante of estudantes'>
-                        <td>
-                            <img *ngIf='exibirImagem'
-                                [src] = 'estudante.url'
-                                [title] = 'estudante.nome'
-                                [style.width.px] = 'larguraImagem'
-                                [style.margin.px] = 'margemImagem'>
-
-                        </td>
+                    <tr *ngFor="let estudante of estudantesFiltrados">
+                        <th scope="row">
+                            <img *ngIf="showImage" [src]="estudante.url"
+                                [alt]="estudante.nome"
+                                [style.width.px]="larguraImagem"
+                                [style.margin.px]="margenImagem">
+                        </th>    
+                        
                         <td>{{estudante.nome}}</td>
-                        <td>{{estudante.sexo}}</td>
+                        <td>{{estudante.sexo | sexo}}</td>
                         <td>{{estudante.planeta}}</td>
                     </tr>
      
