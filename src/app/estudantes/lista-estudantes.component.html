@@ -32,7 +32,7 @@
                 <tbody>
                     <tr *ngFor="let estudante of estudantesFiltrados">
                         <th scope="row">
-                            <img *ngIf="showImage" [src]="estudante.url"
+                            <img *ngIf="exibirImagem" [src]="estudante.url"
                                 [alt]="estudante.nome"
                                 [style.width.px]="larguraImagem"
                                 [style.margin.px]="margenImagem">
