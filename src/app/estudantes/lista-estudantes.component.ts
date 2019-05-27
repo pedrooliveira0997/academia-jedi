@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IEstudante } from './estudantes';
 import { EstudanteService } from 'src/app/estudantes/estudantes.service';
+import { Observable, throwError } from 'rxjs';
+
 
 @Component({
     selector: 'jedi-estudantes',
@@ -26,10 +28,23 @@ export class ListaEstudantesComponent {
     
     constructor(private estudanteServico: EstudanteService) {}
         
+    //ngOnInit() {
+      //  this.estudantes = this.estudanteServico.getEstudantes();
+        //this.estudantesFiltrados = this.estudantes;
+    //}
+
+    mensagemErro: string;
+
     ngOnInit() {
-        this.estudantes = this.estudanteServico.getEstudantes();
-        this.estudantesFiltrados = this.estudantes;
+        this.estudanteServico.getEstudantes().subscribe(
+            estudantes => {
+                this.estudantes = estudantes;
+                this.estudantesFiltrados = this.estudantes;
+            },
+        error => this.mensagemErro = <any>error
+        );
     }
+        
 
     alternarImagem() : void {
         this.exibirImagem = !this.exibirImagem;
