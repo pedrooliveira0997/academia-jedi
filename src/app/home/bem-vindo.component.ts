@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bem-vindo.component.css']
 })
 export class BemVindoComponent implements OnInit {
-  tituloBemVindo: string = 'Bem Vindo a Academia Jedi';
+  tituloBemVindo: string = 'Bem Vindo a Academia Jedi!!!';
 
   constructor() { }
 
