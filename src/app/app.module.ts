@@ -28,7 +28,7 @@ import { EstudanteDetalheGuard } from './estudantes/estudante-detalhe.guard';
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'estudantes', component: ListaEstudantesComponent },
-      { path: 'estudantes/:id', canActivate: [ EstudanteDetalheGuard], component: EstudanteDetalheComponent },
+      { path: 'estudantes/:id', canActivate: [EstudanteDetalheGuard], component: EstudanteDetalheComponent },
       { path: 'bemvindo', component: BemVindoComponent },
       { path: '', redirectTo: 'bemvindo', pathMatch: 'full'},
       { path: '**', redirectTo: 'bemvindo', pathMatch: 'full'}
