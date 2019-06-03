@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { IEstudante } from 'src/app/estudantes/estudantes';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +16,12 @@ import { catchError, tap } from 'rxjs/operators';
                 tap(dados => console.log('Todos: ' + JSON.stringify(dados))),
                 catchError(this.trataErro)
                 );
+        }
+
+        getEstudante(id: number): Observable<IEstudante | undefined> {
+            return this.getEstudantes().pipe(
+            map((estudantes: IEstudante[]) => estudantes.find(p => p.id === id))
+            );
         }
 
         private trataErro(erro: HttpErrorResponse) {

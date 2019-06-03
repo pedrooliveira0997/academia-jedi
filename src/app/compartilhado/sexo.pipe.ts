@@ -4,12 +4,12 @@ import { Pipe, PipeTransform } from "@angular/core";
 
 export class SexoPipe implements PipeTransform {
         transform(value: string): string {
-            if (value == 'masculino') {
-                return 'm';
+            if (value == 'Masculino') {
+                return 'M';
             }
     
-            if (value == 'feminino') {
-                return 'f';
+            if (value == 'Feminino') {
+                return 'F';
             }
 
             return value
